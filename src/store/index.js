@@ -19,4 +19,6 @@ export default createStore({
   }
 });
 
-Store.dispatch("checkAuth");
+const store = new Store();
+
+store.dispatch("checkAuth");
