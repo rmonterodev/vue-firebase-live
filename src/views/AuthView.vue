@@ -164,8 +164,44 @@ export default {
     };
   },
   methods: {
-    doRegister() {},
-    doLogin() {},
+    redirect() {
+      this.$router.push({ name: "Home" });
+    },
+    resetData() {
+      this.userData.name = this.userData.email = this.userData.password = "";
+    },
+    async doRegister() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("user/doRegister", {
+          email: this.userData.email,
+          password: this.userData.password
+        });
+        console.log("Account created");
+        this.resetData();
+        this.redirect();
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async doLogin() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("user/doLogin", {
+          email: this.userData.email,
+          password: this.userData.password
+        });
+        console.log("Logged in");
+        this.resetData();
+        this.redirect();
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        this.isLoading = false;
+      }
+    },
     doReset() {}
   }
 };

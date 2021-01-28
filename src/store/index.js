@@ -1,4 +1,4 @@
-import { createStore, Store } from "vuex";
+import { createStore } from "vuex";
 
 import messages from "./messages";
 import rooms from "./rooms";
@@ -18,7 +18,3 @@ export default createStore({
     utils
   }
 });
-
-const store = new Store();
-
-store.dispatch("checkAuth");
